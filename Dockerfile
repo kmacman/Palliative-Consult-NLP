@@ -13,5 +13,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 # 
 COPY ./Referral /code/Referral
 
+ENV PYTHONPATH="${PYTHONPATH}:/Referral/classes"
+ENV PYTHONPATH="${PYTHONPATH}:/Referral/data_processing"
+
 # 
 CMD ["uvicorn", "Referral.api:app", "--host", "0.0.0.0", "--port", "80"]
