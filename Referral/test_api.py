@@ -1,8 +1,8 @@
 from api import app
 from fastapi.testclient import TestClient
 import pandas as pd
-from referral.ExtractReason import EntExtraction
-from referral.ExtractProblem import ProbExtraction
+from classes.ExtractReason import EntExtraction
+from classes.ExtractProblem import ProbExtraction
 
 
 client = TestClient(app)
@@ -13,6 +13,7 @@ def test_analyze_text():
     assert response.json() == {"reason_code_1": 1,
             "reason_code_2": 2,
             "reason_code_3": 3,
+            "reason_codes_key": "1: symptom, 2: goals, 3: support",
             "primary_diagnosis_code": 3,
             "primary_diagnosis_text": "cardiovascular"}
 

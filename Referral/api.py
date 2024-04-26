@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from referral.ExtractProblem import ProbExtraction
-from referral.ExtractReason import EntExtraction 
+from classes.ExtractProblem import ProbExtraction
+from classes.ExtractReason import EntExtraction 
 
 app = FastAPI()
 class TextData(BaseModel):
