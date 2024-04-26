@@ -9,7 +9,6 @@ class TextData(BaseModel):
 
 @app.post("/analyze")
 def analyze_text(data: TextData):
-    #TODO: break reason into separate reasons
     reasons = EntExtraction(data.text).get_reason_codes()
     reason1 = reasons[0]
     reason2 = reasons[1]
