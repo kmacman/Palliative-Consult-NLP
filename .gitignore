@@ -1,0 +1,5 @@
+.env
+\processed_data
+\raw_data
+workspace.code-workspace
+.coverage
