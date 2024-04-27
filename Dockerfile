@@ -1,21 +1,17 @@
-# 
 FROM python:3.9
 
-# 
-WORKDIR /code
+# Assuming Dockerfile is next to the directories it needs to copy
+COPY ./Referral/ /code/
+COPY ./Referral/classes /code/classes
+COPY ./Referral/data_processing /code/data_processing
 
-# 
-COPY ./requirements.txt /code/requirements.txt
+WORKDIR /code/
 
-# 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-# 
-COPY ./Referral/ /code/Referral/
-#TODO: add classes and data processing folders?
+# Set PYTHONPATH if your application depends on modules in classes or data_processing
+ENV PYTHONPATH="${PYTHONPATH}:/code/classes:/code/data_processing"
 
-ENV PYTHONPATH="${PYTHONPATH}:/Referral/classes"
-ENV PYTHONPATH="${PYTHONPATH}:/Referral/data_processing"
-
-# 
-CMD ["uvicorn", "Referral.api:app", "--host", "0.0.0.0", "--port", "80"]
+# Command to run the application
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "80"]

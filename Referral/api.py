@@ -4,8 +4,8 @@ sys.path.append('\data_processing')
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from .classes.ExtractProblem import ProbExtraction
-from .classes.ExtractReason import EntExtraction 
+from classes.ExtractProblem import ProbExtraction
+from classes.ExtractReason import EntExtraction 
 
 
 app = FastAPI()
