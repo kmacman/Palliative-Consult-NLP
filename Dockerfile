@@ -1,15 +1,17 @@
 FROM python:3.9
 
-# Assuming Dockerfile is next to the directories it needs to copy
-COPY ./App/ /code/
+# Set the working directory in the container
+WORKDIR /code
 
-WORKDIR /code/
+# Copy the current directory contents into the container at /code
+COPY ./App /code/App
 
-# Install dependencies
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+# Install any needed packages specified in requirements.txt
+COPY App/requirements.txt /code/App/requirements.txt
+RUN pip install --no-cache-dir -r /code/App/requirements.txt
 
-# Set PYTHONPATH if your application depends on modules in classes or data_processing
-ENV PYTHONPATH="${PYTHONPATH}:/code/classes:/code/data_processing"
+# Set the environment variable to ensure Python files can find each other
+ENV PYTHONPATH="${PYTHONPATH}:/code/App"
 
 # Command to run the application
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "80"]

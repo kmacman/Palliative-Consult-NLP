@@ -1,5 +1,5 @@
 from medspacy.io import DocConsumer
-from data_processing.processing import nlp
+from App.data_processing.processing import nlp
 import pandas as pd
 import logging
 
