@@ -1,9 +1,7 @@
 FROM python:3.9
 
 # Assuming Dockerfile is next to the directories it needs to copy
-COPY ./Referral/ /code/
-COPY ./Referral/classes /code/classes
-COPY ./Referral/data_processing /code/data_processing
+COPY ./App/ /code/
 
 WORKDIR /code/
 

@@ -1,8 +1,8 @@
-Referral/.env
-Referral/processed_data/
-Referral/raw_data/
-Referral/workspace.code-workspace
-Referral/.coverage
-Referral/.pytest_cache
-Referral/__pycache__/
-Referral/notebook.ipynb
+App/.env
+App/processed_data/
+App/raw_data/
+App/workspace.code-workspace
+App/.coverage
+App/.pytest_cache
+App/__pycache__/
+App/notebook.ipynb
