@@ -1,9 +1,9 @@
 import spacy
 import medspacy
-from .preprocessor import preprocess_rules, Preprocessor
-from .context_rules import ConText, context_rules
+from App.data_processing.preprocessor import preprocess_rules, Preprocessor
+from App.data_processing.context_rules import ConText, context_rules
 from medspacy.section_detection import Sectionizer
-from .postprocessing import postprocess_rules, Postprocessor
+from App.data_processing.postprocessing import postprocess_rules, Postprocessor
 from medspacy.visualization import visualize_ent, visualize_dep
 import re
 import pandas as pd

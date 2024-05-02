@@ -1,8 +1,8 @@
 from App.api import app
 from fastapi.testclient import TestClient
 import pandas as pd
-from App.classes.ExtractReason import EntExtraction
-from App.classes.ExtractProblem import ProbExtraction
+from .classes.ExtractReason import EntExtraction
+from .classes.ExtractProblem import ProbExtraction
 
 
 client = TestClient(app)

@@ -12,6 +12,10 @@ app = FastAPI()
 class TextData(BaseModel):
     text: str
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 @app.post("/analyze")
 def analyze_text(data: TextData):
     reasons = EntExtraction(data.text).get_reason_codes()
