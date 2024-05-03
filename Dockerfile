@@ -8,6 +8,7 @@ COPY ./App /code/App
 
 # Install any needed packages specified in requirements.txt
 COPY App/requirements.txt /code/App/requirements.txt
+RUN pip install --user --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org --network=cloudbuild git+https://source.developers.google.com/...
 RUN pip install --no-cache-dir -r /code/App/requirements.txt
 
 # Set the environment variable to ensure Python files can find each other
