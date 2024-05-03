@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r /code/App/requirements.txt
 ENV PYTHONPATH="${PYTHONPATH}:/code/App"
 
 # Command to run the application
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8080"]
