@@ -53,7 +53,7 @@ class ProbExtraction:
         return dcdf['problem_type']
     
     def _determine_primary_diagnosis(self):
-        diagnosis_heirarchy = ['cancer_heme', 'cancer_solid', 'cardiovascular','renal','infectious','pulmonary','trauma','gastrointestinal','hepatology','dementia','neurology','vascular','met_end','genetic','hematology','premature','fetal','unknown']
+        diagnosis_heirarchy = ['cancer_heme', 'cancer_solid', 'infectious', 'cardiovascular','renal','pulmonary','trauma','gastrointestinal','hepatology','dementia','neurology','vascular','met_end','genetic','hematology','premature','fetal','unknown']
         for diagnosis in diagnosis_heirarchy:
             if diagnosis in self.extracted_categories.values:
                 return diagnosis

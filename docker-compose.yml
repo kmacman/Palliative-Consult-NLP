@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .  # This tells Docker to use the current directory (where your Dockerfile is) as the context for the build
+      dockerfile: Dockerfile  # Specifies the Dockerfile to use, default is 'Dockerfile' if not specified
+    container_name: palliapi
+    ports:
+      - "80:8000"  # Map the port from the container to the host
+    restart: unless-stopped  # This option ensures the container restarts if it crashes unless you manually stop it
