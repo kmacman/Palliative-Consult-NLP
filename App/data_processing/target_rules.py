@@ -29,16 +29,12 @@ def disambiguate_stage_4(matcher, doc, i, matches):
 #TODO: Dysphagia - neurology? Or like above?
 #TODO: Add "trump" definitions for serious diagnoses that are likley to be the primary diagnosis?
 
-'''
--Removed Chemo and Chemotherapy due to the fact that it is not specific for solid vs heme malignancies.
-
-'''
 
 #reason code rules
 symptom_rules = [
     TargetRule("Symptom", "REASON", 
               pattern=[
-                  {"LOWER": {"IN": ["symptom","wob","intractible","intractable","mucositis","symptoms","symptomatic","anxiety","anxious","n/v","agitated","existential","depression","pain","nausea","vomiting","dyspnea","pruritus","pruritis","itch","encephalopathy","obstruction","hemorrhage","diarrhea","constipation","hemoptysis","agitation"]}},
+                  {"LOWER": {"IN": ["symptom","wob","intractible","intractable","mucositis","symptoms","symptomatic","anxiety","anxious","n/v","agitated","existential","depression","pain","nausea","vomiting","sob","dyspnea","pruritus","pruritis","itch","encephalopathy","obstruction","hemorrhage","diarrhea","constipation","hemoptysis","agitation"]}},
               ],
               attributes={"treatment_type": "symptom"}),
 
@@ -66,6 +62,13 @@ goal_rules = [
               ],
               attributes={"treatment_type": "goals"}),
 
+    TargetRule("withdraw care", "REASON", 
+              pattern=[
+                  {"LOWER": "withdraw"},
+                  {"LOWER": "care"}
+              ],
+              attributes={"treatment_type": "goals"}),
+
     TargetRule("family meeting", "REASON", 
               pattern=[
                   {"LOWER": "family"},
@@ -88,6 +91,21 @@ goal_rules = [
     TargetRule("dnr/dni", "REASON", 
               pattern=[
                   {"LOWER": {"IN": ["dnr","dni","molst","cpr","intubation"]}},
+              ],
+              attributes={"treatment_type": "goals"}),
+
+    TargetRule("not a candidate", "REASON", 
+              pattern=[
+                  {"LOWER": {"IN": ["not"]}},
+                  {"LOWER": {"IN": ["a"]}},
+                  {"LOWER": {"IN": ["candidate"]}},
+              ],
+              attributes={"treatment_type": "goals"}),
+
+    TargetRule("treatment options", "REASON", 
+              pattern=[
+                  {"LOWER": {"IN": ["treatment"]}},
+                  {"LOWER": {"IN": ["options"]}},
               ],
               attributes={"treatment_type": "goals"}),
 
@@ -293,7 +311,7 @@ cancer_solid_rules = [
 
     TargetRule("Cancer", "PROBLEM", 
               pattern=[
-                  {"LOWER": {"IN": ["path", "pathology", "squamous","cancer","adenocarcinoma", "nodule","lesion","nodules","rcc","brca", "glioblastoma","metastases","cancers", "carcinoma", "malignancy", "neoplasm", "tumor","metastasis","mets","metastatic","uroepitheliacarcinoma","malignant","mass","gbm","hcc","adenocarcinoma","scc","sclc","nsclc","carcinomatosis","onc","oncology","sarcoma","melanoma","mesothelioma","glioma","astrocytoma","oligodendroglioma","ependymoma"]}},
+                  {"LOWER": {"IN": ["path", "cholangiocarcinoma", "pathology", "squamous","cancer","adenocarcinoma", "nodule","lesion","nodules","rcc","brca", "glioblastoma","metastases","cancers", "carcinoma", "malignancy", "neoplasm", "tumor","metastasis","mets","metastatic","uroepitheliacarcinoma","malignant","mass","gbm","hcc","adenocarcinoma","scc","sclc","nsclc","carcinomatosis","onc","oncology","sarcoma","melanoma","mesothelioma","glioma","astrocytoma","oligodendroglioma","ependymoma"]}},
               ],
               attributes={"problem_type": "cancer_solid"}),
 
@@ -314,6 +332,13 @@ cancer_solid_rules = [
                   {"LOWER": {"IN": ["leptomeningeal","carcinomatosis"]}},
               ],
               attributes={"problem_type": "cancer_solid"}),
+
+    TargetRule("blank ca", "PROBLEM", 
+              pattern=[
+                  {"LOWER": {"IN": ["endometrial","lung"]}},
+                  {"LOWER": {"IN": ["ca"]}}
+              ],
+              attributes={"problem_type": "cancer_solid"}),       
             
 
 ]
@@ -321,7 +346,7 @@ cancer_solid_rules = [
 cancer_heme_rules = [
     TargetRule("Cancer", "PROBLEM", 
               pattern=[
-                  {"LOWER": {"IN": ["cll","lymphoma","leukemia","myeloma","mgus"]}},
+                  {"LOWER": {"IN": ["cll","lymphoma","leukemia","myeloma"]}},
               ],
               attributes={"problem_type": "cancer_heme"}),
 
@@ -429,7 +454,7 @@ cardiovascular_rules = [
 
     TargetRule("Heart Failure", "problem", 
               pattern=[
-                  {"LOWER": "heart"},
+                  {"LOWER": {"IN" : ["heart","lv","rv"]}},
                   {"LOWER": "failure"}
               ],
               attributes={"problem_type": "cardiovascular"}),
@@ -544,6 +569,18 @@ gastrointestinal_rules = [
     TargetRule("ostomy", "PROBLEM", 
               pattern=[
                   {"LOWER": {"IN": ["ostomy","ileostomy","colostomy"]}},
+              ],
+              attributes={"problem_type": "gastrointestinal"}),
+
+    TargetRule("peritonitis", "PROBLEM", 
+              pattern=[
+                  {"LOWER": {"IN": ["peritonitis"]}},
+              ],
+              attributes={"problem_type": "gastrointestinal"}),
+
+    TargetRule("colorectal", "PROBLEM", 
+              pattern=[
+                  {"LOWER": {"IN": ["colorectal"]}},
               ],
               attributes={"problem_type": "gastrointestinal"}),
     

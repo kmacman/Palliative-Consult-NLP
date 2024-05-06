@@ -53,7 +53,7 @@ class ProbExtraction:
         return dcdf['problem_type']
     
     def _determine_primary_diagnosis(self):
-        diagnosis_heirarchy = ['cancer_solid', 'cancer_heme','cardiovascular','renal','infectious','pulmonary','trauma','gastrointestinal','hepatology','dementia','neurology','vascular','met_end','genetic','hematology','premature','fetal','unknown']
+        diagnosis_heirarchy = ['cancer_heme', 'cancer_solid', 'cardiovascular','renal','infectious','pulmonary','trauma','gastrointestinal','hepatology','dementia','neurology','vascular','met_end','genetic','hematology','premature','fetal','unknown']
         for diagnosis in diagnosis_heirarchy:
             if diagnosis in self.extracted_categories.values:
                 return diagnosis
@@ -62,7 +62,7 @@ class ProbExtraction:
     def get_problem_code(self):
         """Determines problem codes based on the extracted categories."""
         primary_diagnosis = self._determine_primary_diagnosis()
-        codes = {'cancer_solid': 1, 'cancer_heme': 2, 'cardiovascular': 3, 'renal': 7, 'infectious': 10, 'pulmonary': 4, 'trauma': 11, 'gastrointestinal': 5, 'hepatology': 6, 'dementia': 8, 'neurology': 9, 'vascular': 12, 'met_end': 13, 'genetic': 14, 'hematology': 15, 'premature': 16, 'fetal': 17, 'unknown': 99}
+        codes = {'cancer_solid': 1, 'cancer_heme': 2, 'infectious': 10, 'cardiovascular': 3, 'renal': 7,  'pulmonary': 4, 'trauma': 11, 'gastrointestinal': 5, 'hepatology': 6, 'dementia': 8, 'neurology': 9, 'vascular': 12, 'met_end': 13, 'genetic': 14, 'hematology': 15, 'premature': 16, 'fetal': 17, 'unknown': 99}
         # Map categories to codes
         return codes[primary_diagnosis]
 
