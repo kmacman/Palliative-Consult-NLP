@@ -6,6 +6,7 @@ App/.coverage
 App/.pytest_cache
 App/__pycache__/
 App/notebook.ipynb
+App/notebook1.ipynb
 /palli-api
 /App/requirements1.txt
 /App/validation.ipynb
