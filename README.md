@@ -50,7 +50,7 @@ Note, there is an API hosted on-line at http://palliapi.kentmccannmd.com/analyze
 
 ## Contributing
 
-Guidelines for contributing to your project and how others can get involved.
+If you are interested in contributing, please reach out to me at KentMcCannMD@Gmail.Com
 
 
 ## License
